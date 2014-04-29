@@ -22,4 +22,12 @@
     <!-- Expanded Status Bar Weather Text Colors -->
     <color name="status_bar_temperature_text_color">#FFFFFFFF</color>
     <color name="status_bar_temperature_location_text_color">#FFFFFFFF</color>
+
+    <!-- app sidebar trigger region color -->
+    <color name="trigger_region_color">#8015a0e5</color>
+    <!-- app sidebar item text color -->
+    <color name="sidebar_item_text_color">#ffffffff</color>
+    <!-- app sidebar item text shadow color -->
+    <color name="sidebar_item_text_shadow_color">#ff000000</color>
+
 </resources>
