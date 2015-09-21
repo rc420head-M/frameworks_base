@@ -482,9 +482,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUSBAR_CLOCK_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT), 
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+           if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT))) {
+                    recreateStatusBar();
+                    updateRowStates();
+                    updateSpeedbump();
+                    updateClearAll();
+                    updateEmptyShadeView();
+            }
+            update();
+        }
 
         @Override
         protected void unobserve() {
