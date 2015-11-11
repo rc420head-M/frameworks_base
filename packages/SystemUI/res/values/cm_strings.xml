@@ -31,6 +31,9 @@
 
     <!-- Content description of the superuser tile -->
     <string name="accessibility_su_active">Superuser session active</string>
+    
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_power">Power</string>
 
     <!-- Strings for lockscreen shortcut hints -->
     <string name="left_shortcut_hint">Swipe right for %1$s</string>
@@ -54,6 +57,7 @@
     <string name="navbar_menu_big_button">Menu button</string>
     <string name="accessibility_dpad_left">Cursor left</string>
     <string name="accessibility_dpad_right">Cursor right</string>
+    <string name="navbar_power_button">Power button</string>
 
     <!-- Development shortcuts -->
     <!-- Title shown in recents popup for removing an application from the list -->
