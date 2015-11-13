@@ -101,7 +101,8 @@
             <com.android.keyguard.AlphaOptimizedLinearLayout android:id="@+id/system_icon_area"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal" />
+                android:orientation="horizontal" 
+	>
 
             <com.android.systemui.statusbar.policy.NetworkTraffic
                 android:id="@+id/networkTraffic"
