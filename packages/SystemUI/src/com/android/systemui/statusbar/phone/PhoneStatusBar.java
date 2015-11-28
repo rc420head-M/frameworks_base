@@ -463,14 +463,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this,
-                    UserHandle.USER_ALL);
+                    CMSettings.System.STATUS_BAR_BRIGHTNESS_CONTROL),
+		    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SCREEN_BRIGHTNESS_MODE), false, this, UserHandle.USER_ALL);
+                    Settings.System.SCREEN_BRIGHTNESS_MODE), 
+		    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this, UserHandle.USER_ALL);
+                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), 
+		    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.Secure.RECENTS_LONG_PRESS_ACTIVITY), false, this);
+                    CMSettings.Secure.RECENTS_LONG_PRESS_ACTIVITY), 
+		    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP),
                     false, this, UserHandle.USER_ALL);
@@ -480,8 +483,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.APP_SIDEBAR_POSITION),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
+
 
         @Override
         protected void unobserve() {
