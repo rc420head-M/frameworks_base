@@ -357,7 +357,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // settings
     private QSDragPanel mQSPanel;
-    private DevForceNavbarObserver mDevForceNavbarObserver;
 
     // top bar
     StatusBarHeaderView mHeader;
@@ -530,51 +529,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    class DevForceNavbarObserver extends UserContentObserver {
-        DevForceNavbarObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        protected void observe() {
-            super.observe();
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(CMSettings.Secure.getUriFor(
-                    CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR), false, this, UserHandle.USER_ALL);
-        }
-
-        @Override
-        public void update() {
-            boolean visible = CMSettings.Secure.getIntForUser(mContext.getContentResolver(),
-                    CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
-
-            if (visible) {
-                forceAddNavigationBar();
-            } else {
-                removeNavigationBar();
-            }
-
-            // Send a broadcast to Settings to update Key disabling when user changes
-            Intent intent = new Intent("com.cyanogenmod.action.UserChanged");
-            intent.setPackage("com.android.settings");
-            mContext.sendBroadcastAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
-        }
-    }
-
-    private void forceAddNavigationBar() {
-        // If we have no Navbar view and we should have one, create it
-        if (mNavigationBarView != null) {
-            return;
-        }
-
-        mNavigationBarView =
-                (NavigationBarView) View.inflate(mContext, R.layout.navigation_bar, null);
-
-        mNavigationBarView.setDisabledFlags(mDisabled1);
-        mNavigationBarView.setBar(this);
-        addNavigationBar();
-    }
-
     private void updateWeatherTextState(String temp) {
         if (mWeatherTempView != null) {
             if (mWeatherTempState == 0 || TextUtils.isEmpty(temp)) {
@@ -603,7 +557,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             updateWeatherTextState(mWeatherController.getWeatherInfo().temp);
         }
     }
-
+    
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     private boolean mUserSetup = false;
     private ContentObserver mUserSetupObserver = new ContentObserver(new Handler()) {
@@ -876,17 +830,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // in session state
 
         addNavigationBar();
-
-        // Developer options - Force Navigation bar
-        try {
-            boolean needsNav = mWindowManagerService.needsNavigationBar();
-            if (!needsNav) {
-                mDevForceNavbarObserver = new DevForceNavbarObserver(mHandler);
-                mDevForceNavbarObserver.observe();
-            }
-        } catch (RemoteException ex) {
-            // no window manager? good luck with that
-        }
 
         SettingsObserver observer = new SettingsObserver(mHandler);
         observer.observe();
@@ -1504,14 +1447,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         prepareNavigationBarView();
 
         mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
-    }
-
-    private void removeNavigationBar() {
-        if (DEBUG) Log.d(TAG, "removeNavigationBar: about to remove " + mNavigationBarView);
-        if (mNavigationBarView == null) return;
-
-        mWindowManager.removeView(mNavigationBarView);
-        mNavigationBarView = null;
     }
 
     private void repositionNavigationBar() {
