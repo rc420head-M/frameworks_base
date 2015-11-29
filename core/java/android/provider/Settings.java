@@ -3620,65 +3620,40 @@ public final class Settings {
         public static final String ALLOW_LIGHTS = "allow_lights";
 
         /**
-         * Whether or not to use the app sidebar
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_ENABLED = "app_sidebar_enabled";
-
-        /**
-         * User defined transparency level for sidebar
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_TRANSPARENCY = "app_sidebar_transparency";
-
-        /**
-         * Disable text labels for app sidebar items
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_DISABLE_LABELS = "app_sidebar_disable_labels";
-
-        /**
-         * Position of app sidebar
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_POSITION = "app_sidebar_position";
-
-        /**
-         * Width of the appbar trigger
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_TRIGGER_WIDTH = "app_sidebar_trigger_width";
-
-        /**
-         * Position of appbar trigger
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_TRIGGER_TOP = "app_sidebar_trigger_top";
-
-        /**
-         * Height of the appbar trigger
-         *
-         * @hide
-         */
-        public static final String APP_SIDEBAR_TRIGGER_HEIGHT = "app_sidebar_trigger_height";
-
-        /**
-         * Setting for clock color
-         * @hide
-         */
-        public static final String APP_SIDEBAR_SHOW_TRIGGER = "app_sidebar_show_trigger";
-        
-        /**
          * Alternative recent apps integration using OmniSwitch
          * @hide
          */
         public static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+
+         /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE = "status_bar_date";
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE_STYLE = "status_bar_date_style";
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE_FORMAT = "status_bar_date_format";
+        
+         /**
+          * Setting for clock color
+          * @hide
+          */
+         public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
 
         /**
          * Navigation bar height when it is on protrait
